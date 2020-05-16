@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF1F9FA924704D5200A018D9 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1F9FA824704D5200A018D9 /* AppView.swift */; };
+		CF1F9FAB24704D6500A018D9 /* AvocadosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1F9FAA24704D6500A018D9 /* AvocadosView.swift */; };
+		CF1F9FAD24704D7F00A018D9 /* RipenigStagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1F9FAC24704D7F00A018D9 /* RipenigStagesView.swift */; };
+		CF1F9FAF24704DB000A018D9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1F9FAE24704DB000A018D9 /* SettingsView.swift */; };
 		CF369B48246F4B5D00A97100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF369B47246F4B5D00A97100 /* AppDelegate.swift */; };
 		CF369B4A246F4B5D00A97100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF369B49246F4B5D00A97100 /* SceneDelegate.swift */; };
 		CF369B4C246F4B5D00A97100 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF369B4B246F4B5D00A97100 /* ContentView.swift */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF1F9FA824704D5200A018D9 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		CF1F9FAA24704D6500A018D9 /* AvocadosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvocadosView.swift; sourceTree = "<group>"; };
+		CF1F9FAC24704D7F00A018D9 /* RipenigStagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RipenigStagesView.swift; sourceTree = "<group>"; };
+		CF1F9FAE24704DB000A018D9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CF369B44246F4B5D00A97100 /* AguacatesUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AguacatesUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF369B47246F4B5D00A97100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF369B49246F4B5D00A97100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +45,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF1F9FA524704D2B00A018D9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CF1F9FA624704D3500A018D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CF369B4B246F4B5D00A97100 /* ContentView.swift */,
+				CF1F9FA824704D5200A018D9 /* AppView.swift */,
+				CF1F9FAA24704D6500A018D9 /* AvocadosView.swift */,
+				CF1F9FAC24704D7F00A018D9 /* RipenigStagesView.swift */,
+				CF1F9FAE24704DB000A018D9 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CF1F9FA724704D3F00A018D9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		CF369B3B246F4B5D00A97100 = {
 			isa = PBXGroup;
 			children = (
@@ -56,9 +90,11 @@
 		CF369B46246F4B5D00A97100 /* AguacatesUI */ = {
 			isa = PBXGroup;
 			children = (
+				CF1F9FA724704D3F00A018D9 /* Data */,
+				CF1F9FA624704D3500A018D9 /* Views */,
+				CF1F9FA524704D2B00A018D9 /* Models */,
 				CF369B47246F4B5D00A97100 /* AppDelegate.swift */,
 				CF369B49246F4B5D00A97100 /* SceneDelegate.swift */,
-				CF369B4B246F4B5D00A97100 /* ContentView.swift */,
 				CF369B4D246F4B5E00A97100 /* Assets.xcassets */,
 				CF369B52246F4B5E00A97100 /* LaunchScreen.storyboard */,
 				CF369B55246F4B5E00A97100 /* Info.plist */,
@@ -146,8 +182,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF1F9FAF24704DB000A018D9 /* SettingsView.swift in Sources */,
+				CF1F9FAB24704D6500A018D9 /* AvocadosView.swift in Sources */,
+				CF1F9FA924704D5200A018D9 /* AppView.swift in Sources */,
 				CF369B48246F4B5D00A97100 /* AppDelegate.swift in Sources */,
 				CF369B4A246F4B5D00A97100 /* SceneDelegate.swift in Sources */,
+				CF1F9FAD24704D7F00A018D9 /* RipenigStagesView.swift in Sources */,
 				CF369B4C246F4B5D00A97100 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
