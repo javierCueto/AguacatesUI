@@ -34,7 +34,7 @@ struct AppView: View {
                     Text("Settings")
                 })
         }
-        .edgesIgnoringSafeArea(.top)
+        //.edgesIgnoringSafeArea(.top)
         .accentColor(Color.primary)
     }
 }
