@@ -10,6 +10,10 @@ import SwiftUI
 
 struct RecipeCardView: View {
     var recipe: Recipe
+    
+    var hapticImpact = UIImpactFeedbackGenerator(style: .heavy)
+    
+    @State private var showModal : Bool = false
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Image(recipe.image)
@@ -43,34 +47,22 @@ struct RecipeCardView: View {
                     .foregroundColor(Color.gray)
                     .lineLimit(1)
                 //rates
-                HStack(alignment: .center, spacing: 5) {
-                    ForEach(1...(recipe.rating) , id: \.self) { _ in
-                        Image(systemName: "star.fill")
-                            .font(.body)
-                            .foregroundColor(.yellow)
-                    }
-                }
+                RecipeRatingView(rating: recipe.rating)
                 //coocking
-                HStack(alignment: .center, spacing: 12) {
-                    HStack(alignment: .center, spacing: 2){
-                        Image(systemName: "person.2")
-                        Text("Serves: \(recipe.serves)")
-                    }
-                    HStack(alignment: .center, spacing: 2){
-                        Image(systemName: "clock")
-                        Text("Prep: \(recipe.preparation)")
-                    }
-                    HStack(alignment: .center, spacing: 2){
-                        Image(systemName: "flame")
-                        Text("Coocking: \(recipe.cooking)")
-                    }
-                }.font(.footnote)
-                    .foregroundColor(Color.gray)
+                RecipeCookingView(recipe: recipe)
+               
             }.padding()
                 .padding(.bottom, 12)
         }.background(Color.white)
             .cornerRadius(12)
             .shadow(color: Color("ColorBlackTransparentLight"), radius: 8, x: 0, y: 0)
+            .onTapGesture {
+                self.hapticImpact.impactOccurred()
+                self.showModal = true
+        }
+        .sheet(isPresented: self.$showModal) {
+            RecipeDetailView(recipe: self.recipe)
+        }
     }
 }
 
