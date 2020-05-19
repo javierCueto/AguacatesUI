@@ -14,30 +14,13 @@ struct RecipeDetailView: View {
     @State private var pulsate: Bool = false
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
+        
         ScrollView(.vertical,showsIndicators: false){
             VStack(alignment: .center, spacing: 0){
                 Image(recipe.image)
                     .resizable()
                     .scaledToFit()
-                    .overlay(
-                        HStack {
-                            Spacer()
-                            VStack {
-                                Button(action: {
-                                    print("here")
-                                    self.presentationMode.wrappedValue.dismiss()
-                                }, label: {
-                                    Image(systemName: "chevron.down.circle.fill")
-                                        .font(.title)
-                                        .foregroundColor(.white)
-                                        .shadow(radius: 4)
-                                        .opacity(self.pulsate ? 1 : 0.6)
-                                        .scaleEffect(self.pulsate ? 1.2: 0.8, anchor: .center)
-                                        .animation(Animation.easeOut(duration: 1.5).repeatForever(autoreverses: true))
-                                })
-                                Spacer()
-                            }.padding()
-                    })
+                
                 
                 Group{
                     //title
@@ -99,7 +82,28 @@ struct RecipeDetailView: View {
                 
                 
             }
+            .overlay(
+                HStack {
+                    Spacer()
+                    VStack {
+                        Button(action: {
+                            print("here")
+                            self.presentationMode.wrappedValue.dismiss()
+                        }, label: {
+                            Image(systemName: "chevron.down.circle.fill")
+                                .font(.title)
+                                .foregroundColor(.white)
+                                .shadow(radius: 4)
+                                .opacity(self.pulsate ? 1 : 0.6)
+                                .scaleEffect(self.pulsate ? 1.2: 0.8, anchor: .center)
+                                .animation(Animation.easeOut(duration: 1.5).repeatForever(autoreverses: true))
+                        })
+                        Spacer()
+                    }.padding()
+                }
+            )
         }
+            
         .edgesIgnoringSafeArea(.all)
         .onAppear(){
             self.pulsate.toggle()
