@@ -8,22 +8,26 @@
 
 import SwiftUI
 
+
+
 struct RecipeDetailView: View {
+    // MARK: - PROPERTIES
+    
     var recipe: Recipe
     
     @State private var pulsate: Bool = false
     @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-        
-        ScrollView(.vertical,showsIndicators: false){
-            VStack(alignment: .center, spacing: 0){
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(alignment: .center, spacing: 0) {
+                // IMAGE
                 Image(recipe.image)
                     .resizable()
                     .scaledToFit()
                 
-                
-                Group{
-                    //title
+                Group {
+                    // TITLE
                     Text(recipe.title)
                         .font(.system(.largeTitle, design: .serif))
                         .fontWeight(.bold)
@@ -31,20 +35,19 @@ struct RecipeDetailView: View {
                         .foregroundColor(Color("ColorGreenAdaptive"))
                         .padding(.top, 10)
                     
-                    //rating
-                    RecipeRatingView(rating: recipe.rating)
-                    //cooking
-                    RecipeCookingView(recipe: recipe)
-                    //ingredients
+                    // RATING
+                     RecipeRatingView(rating: recipe.rating)
                     
+                    // COOKING
+                    RecipeCookingView(recipe: recipe)
+                    
+                    // INGREDIENTS
                     Text("Ingredients")
                         .fontWeight(.bold)
                         .modifier(TitleModifier())
                     
                     VStack(alignment: .leading, spacing: 5) {
-                        ForEach(recipe.ingredients, id: \.self){ item in
-                            
-                            
+                        ForEach(recipe.ingredients, id: \.self) { item in
                             VStack(alignment: .leading, spacing: 5) {
                                 Text(item)
                                     .font(.footnote)
@@ -52,16 +55,15 @@ struct RecipeDetailView: View {
                                 Divider()
                             }
                         }
-                        
                     }
-                    //instruction
                     
-                    Text("Ingredients")
+                    // INSTRUCTIONS
+                    
+                    Text("Instructions")
                         .fontWeight(.bold)
                         .modifier(TitleModifier())
-                    ForEach(recipe.instructions, id: \.self){ item in
-                        
-                        
+                    
+                    ForEach(recipe.instructions, id: \.self) { item in
                         VStack(alignment: .center, spacing: 5) {
                             Image(systemName: "chevron.down.circle")
                                 .resizable()
@@ -69,46 +71,45 @@ struct RecipeDetailView: View {
                                 .imageScale(.large)
                                 .font(Font.title.weight(.ultraLight))
                                 .foregroundColor(Color("ColorGreenAdaptive"))
+                            
                             Text(item)
-                                .font(.system(.body, design: .serif))
-                                .multilineTextAlignment(.leading)
                                 .lineLimit(nil)
+                                .multilineTextAlignment(.center)
+                                .font(.system(.body, design: .serif))
                                 .frame(minHeight: 100)
                         }
                     }
-                    
-                }.padding(.horizontal, 24)
-                    .padding(.vertical, 12)
-                
-                
+                }
+                .padding(.horizontal, 24)
+                .padding(.vertical, 12)
             }
+        } // END OF VSTACK
+            .edgesIgnoringSafeArea(.top)
             .overlay(
                 HStack {
                     Spacer()
                     VStack {
                         Button(action: {
-                            print("here")
+                            print("button here")
                             self.presentationMode.wrappedValue.dismiss()
                         }, label: {
                             Image(systemName: "chevron.down.circle.fill")
                                 .font(.title)
-                                .foregroundColor(.white)
+                                .foregroundColor(Color.white)
                                 .shadow(radius: 4)
                                 .opacity(self.pulsate ? 1 : 0.6)
-                                .scaleEffect(self.pulsate ? 1.2: 0.8, anchor: .center)
-                                .animation(Animation.easeOut(duration: 1.5).repeatForever(autoreverses: true))
+                                .scaleEffect(self.pulsate ? 1.2 : 0.8, anchor: .center)
+                                .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
                         })
+                            .padding(.trailing, 20)
+                            .padding(.top, 24)
                         Spacer()
-                    }.padding()
+                    }
                 }
-            )
+        )
+            .onAppear() {
+                self.pulsate.toggle()
         }
-            
-        .edgesIgnoringSafeArea(.all)
-        .onAppear(){
-            self.pulsate.toggle()
-        }
-        
     }
 }
 
@@ -117,3 +118,114 @@ struct RecipeDetailView_Previews: PreviewProvider {
         RecipeDetailView(recipe: recipesData[0])
     }
 }
+/*
+ struct RecipeDetailView: View {
+ var recipe: Recipe
+ 
+ @State private var pulsate: Bool = false
+ @Environment(\.presentationMode) var presentationMode
+ var body: some View {
+ 
+ ScrollView(.vertical,showsIndicators: false){
+ VStack(alignment: .center, spacing: 0){
+ Image(recipe.image)
+ .resizable()
+ .scaledToFit()
+ 
+ 
+ Group{
+ //title
+ Text(recipe.title)
+ .font(.system(.largeTitle, design: .serif))
+ .fontWeight(.bold)
+ .multilineTextAlignment(.center)
+ .foregroundColor(Color("ColorGreenAdaptive"))
+ .padding(.top, 10)
+ 
+ //rating
+ RecipeRatingView(rating: recipe.rating)
+ //cooking
+ RecipeCookingView(recipe: recipe)
+ //ingredients
+ 
+ Text("Ingredients")
+ .fontWeight(.bold)
+ .modifier(TitleModifier())
+ 
+ VStack(alignment: .leading, spacing: 5) {
+ ForEach(recipe.ingredients, id: \.self){ item in
+ 
+ 
+ VStack(alignment: .leading, spacing: 5) {
+ Text(item)
+ .font(.footnote)
+ .multilineTextAlignment(.leading)
+ Divider()
+ }
+ }
+ 
+ }
+ //instruction
+ 
+ Text("Ingredients")
+ .fontWeight(.bold)
+ .modifier(TitleModifier())
+ ForEach(recipe.instructions, id: \.self){ item in
+ 
+ 
+ VStack(alignment: .center, spacing: 5) {
+ Image(systemName: "chevron.down.circle")
+ .resizable()
+ .frame(width: 42, height: 42, alignment: .center)
+ .imageScale(.large)
+ .font(Font.title.weight(.ultraLight))
+ .foregroundColor(Color("ColorGreenAdaptive"))
+ Text(item)
+ .font(.system(.body, design: .serif))
+ .multilineTextAlignment(.leading)
+ .lineLimit(nil)
+ .frame(minHeight: 100)
+ }
+ }
+ 
+ }.padding(.horizontal, 24)
+ .padding(.vertical, 12)
+ 
+ 
+ }
+ .overlay(
+ HStack {
+ Spacer()
+ VStack {
+ Button(action: {
+ print("here")
+ self.presentationMode.wrappedValue.dismiss()
+ }, label: {
+ Image(systemName: "chevron.down.circle.fill")
+ .font(.title)
+ .foregroundColor(.white)
+ .shadow(radius: 4)
+ .opacity(self.pulsate ? 1 : 0.6)
+ .scaleEffect(self.pulsate ? 1.2: 0.8, anchor: .center)
+ .animation(Animation.easeOut(duration: 1.5).repeatForever(autoreverses: true))
+ })
+ Spacer()
+ }.padding()
+ }
+ )
+ }
+ 
+ .edgesIgnoringSafeArea(.all)
+ .onAppear(){
+ self.pulsate.toggle()
+ }
+ 
+ }
+ }
+ 
+ struct RecipeDetailView_Previews: PreviewProvider {
+ static var previews: some View {
+ RecipeDetailView(recipe: recipesData[0])
+ }
+ }
+ */
